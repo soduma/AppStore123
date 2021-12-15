@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		207639994F365F4CBD4A5F26 /* Pods_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D735E216723BF1FDFF7168 /* Pods_AppStore.framework */; };
+		A01DDB7A2769D8EA00C6C37B /* AppDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01DDB792769D8EA00C6C37B /* AppDetailViewController.swift */; };
 		A067ECFE27630E4900EDE17E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067ECFD27630E4900EDE17E /* AppDelegate.swift */; };
 		A067ED0027630E4900EDE17E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067ECFF27630E4900EDE17E /* SceneDelegate.swift */; };
 		A067ED0227630E4900EDE17E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067ED0127630E4900EDE17E /* TabBarController.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		583934B32AF02E83AC8185ED /* Pods-AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.release.xcconfig"; path = "Target Support Files/Pods-AppStore/Pods-AppStore.release.xcconfig"; sourceTree = "<group>"; };
 		5E889420F408219440B499AF /* Pods-AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.debug.xcconfig"; path = "Target Support Files/Pods-AppStore/Pods-AppStore.debug.xcconfig"; sourceTree = "<group>"; };
+		A01DDB792769D8EA00C6C37B /* AppDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailViewController.swift; sourceTree = "<group>"; };
 		A067ECFA27630E4900EDE17E /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A067ECFD27630E4900EDE17E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A067ECFF27630E4900EDE17E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				A067ED0127630E4900EDE17E /* TabBarController.swift */,
-				A09FB1B727670E0B001DAE89 /* App */,
 				A067ED192763144900EDE17E /* Today */,
+				A09FB1B727670E0B001DAE89 /* App */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -116,6 +118,7 @@
 				A067ED1A2763146F00EDE17E /* TodayViewController.swift */,
 				A067ED1C2763195A00EDE17E /* TodayCollectionViewCell.swift */,
 				A067ED1E276328E600EDE17E /* TodayCollectionHeaderView.swift */,
+				A01DDB792769D8EA00C6C37B /* AppDetailViewController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				A067ED0027630E4900EDE17E /* SceneDelegate.swift in Sources */,
 				A067ED1D2763195A00EDE17E /* TodayCollectionViewCell.swift in Sources */,
 				A09FB1BB2767169F001DAE89 /* FeatureSectionView.swift in Sources */,
+				A01DDB7A2769D8EA00C6C37B /* AppDetailViewController.swift in Sources */,
 				A0F570402769B26700A86E86 /* RankingFeatureSectionView.swift in Sources */,
 				A0F570442769CF4600A86E86 /* ExchangeCodeSectionView.swift in Sources */,
 			);
