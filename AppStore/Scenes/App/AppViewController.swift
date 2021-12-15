@@ -18,22 +18,17 @@ final class AppViewController: UIViewController {
         stackView.distribution = .equalSpacing
         stackView.spacing = 0
         
-        let featureSectionView = UIView()
-        let rankingFeatureSectionView = UIView()
-        let exchangeCodeSectionView = UIView()
+        let featureSectionView = FeatureSectionView(frame: .zero)
+        let rankingFeatureSectionView = RankingFeatureSectionView(frame: .zero)
+        let exchangeCodeSectionView = ExchangeCodeSectionView(frame: .zero)
         
-        featureSectionView.backgroundColor = .red
-        rankingFeatureSectionView.backgroundColor = .blue
-        exchangeCodeSectionView.backgroundColor = .yellow
+//        let spacingView = UIView()
+//        spacingView.snp.makeConstraints {
+//            $0.height.equalTo(100)
+//        }
         
         [featureSectionView, rankingFeatureSectionView, exchangeCodeSectionView]
-            .forEach {
-                $0.snp.makeConstraints {
-                    $0.height.equalTo(500)
-                }
-                stackView.addArrangedSubview($0)
-            }
-        
+            .forEach { stackView.addArrangedSubview($0) }
         return stackView
     }()
     
