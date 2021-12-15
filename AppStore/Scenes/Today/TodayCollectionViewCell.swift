@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class TodayCollectionViewCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
@@ -27,6 +28,7 @@ final class TodayCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textColor = .white
+        label.numberOfLines = 0
         return label
     }()
     
@@ -44,15 +46,19 @@ final class TodayCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setUp() {
+    func setUp(today: Today) {
         setUpSubView()
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.3
         layer.shadowRadius = 10
         
-        subTitleLabel.text = "gdgd"
-        titleLabel.text = "Gdadgag"
-        descriptionLabel.text = "Gdagefaf"
+        subTitleLabel.text = today.subTitle
+        titleLabel.text = today.title
+        descriptionLabel.text = today.description
+        
+        if let imageURL = URL(string: today.imageURL) {
+            imageView.kf.setImage(with: imageURL)
+        }
     }
 }
 

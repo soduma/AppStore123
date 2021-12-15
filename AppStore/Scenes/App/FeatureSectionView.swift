@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class FeatureSectionView: UIView {
+    private var featureList: [Feature] = []
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -30,6 +31,8 @@ final class FeatureSectionView: UIView {
         super.init(frame: frame)
         
         setUpViews()
+        fetchData()
+        collectionView.reloadData()
     }
     
     required init?(coder: NSCoder) {
@@ -40,12 +43,12 @@ final class FeatureSectionView: UIView {
 extension FeatureSectionView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeatureSectionViewCell", for: indexPath) as? FeatureSectionViewCell else { return UICollectionViewCell() }
-        cell.setUp()
+        cell.setUp(feature: featureList[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return featureList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -75,6 +78,19 @@ private extension FeatureSectionView {
         separatorView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.top.equalTo(collectionView.snp.bottom).offset(16)
+        }
+    }
+}
+
+private extension FeatureSectionView {
+    func fetchData() {
+        guard let url = Bundle.main.url(forResource: "Feature", withExtension: "plist") else { return }
+        do {
+            let data = try Data(contentsOf: url)
+            let result = try PropertyListDecoder().decode([Feature].self, from: data)
+            featureList = result
+        } catch {
+            
         }
     }
 }

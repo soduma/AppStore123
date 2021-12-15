@@ -13,11 +13,10 @@ final class RankingFeatureSectionViewCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .tertiarySystemGroupedBackground
         imageView.layer.borderColor = UIColor.tertiaryLabel.cgColor
         imageView.layer.borderWidth = 0.5
         imageView.layer.cornerRadius = 7
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .center
         imageView.tintColor = .black
         return imageView
     }()
@@ -55,12 +54,12 @@ final class RankingFeatureSectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    func setUp() {
+    func setUp(ranking: RankingFeature) {
         setUpLayout()
         imageView.image = UIImage(systemName: "applelogo")
-        titleLabel.text = "앱이름"
-        descriptionLabel.text = "앱설명"
-        inAppPurchaseInfoLabel.isHidden = [true, false].randomElement() ?? true
+        titleLabel.text = ranking.title
+        descriptionLabel.text = ranking.description
+        inAppPurchaseInfoLabel.isHidden = !ranking.isInPurchaseApp
     }
 }
 

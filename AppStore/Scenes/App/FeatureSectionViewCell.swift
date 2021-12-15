@@ -40,21 +40,21 @@ final class FeatureSectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    func setUp() {
+    func setUp(feature: Feature) {
         setUpLayout()
-        typeLabel.text = "type"
-        appNameLabel.text = "appname"
-        descriptionLabel.text = "description"
-        imageView.backgroundColor = .green
+        typeLabel.text = feature.type
+        appNameLabel.text = feature.appName
+        descriptionLabel.text = feature.description
+        if let imageURL = URL(string: feature.imageURL) {
+            imageView.kf.setImage(with: imageURL)
+        }
     }
 }
 
 private extension FeatureSectionViewCell {
     func setUpLayout() {
         [typeLabel, appNameLabel, descriptionLabel, imageView]
-            .forEach {
-                addSubview($0)
-            }
+            .forEach { addSubview($0) }
         
         typeLabel.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview()

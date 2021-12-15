@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 final class AppDetailViewController: UIViewController {
+    private let today: Today
+    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .secondarySystemBackground
@@ -29,6 +31,7 @@ final class AppDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .medium)
         label.textColor = .secondaryLabel
+        label.numberOfLines = 2
         return label
     }()
     
@@ -49,13 +52,26 @@ final class AppDetailViewController: UIViewController {
         return button
     }()
     
+    init(today: Today) {
+        self.today = today
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         setUpLayout()
-        titleLabel.text = "아몰랑"
-        descriptionLabel.text = "쿠쿠쿠쿠"
+        titleLabel.text = today.title
+        descriptionLabel.text = today.description
+        
+        if let imageURL = URL(string: today.imageURL) {
+            imageView.kf.setImage(with: imageURL)
+        }
     }
 }
 
@@ -78,6 +94,7 @@ extension AppDetailViewController {
         
         descriptionLabel.snp.makeConstraints {
             $0.leading.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().inset(16)
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
         }
         

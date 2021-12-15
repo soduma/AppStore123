@@ -58,7 +58,7 @@ private extension AppViewController {
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalToSuperview() // 세로스크롤
-//            $0.height.equalToSuperview() 가로스크롤
+//            $0.height.equalToSuperview() // 가로스크롤
         }
         
         contentView.addSubview(stackView)

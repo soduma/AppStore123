@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 final class TodayViewController: UIViewController {
+    private var todayList: [Today] = []
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -28,17 +30,18 @@ final class TodayViewController: UIViewController {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        fetchData()
     }
 }
 
 extension TodayViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return todayList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayCell", for: indexPath) as? TodayCollectionViewCell else { return UICollectionViewCell() }
-        cell.setUp()
+        cell.setUp(today: todayList[indexPath.row])
         
         return cell
     }
@@ -67,6 +70,20 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        present(AppDetailViewController(), animated: true, completion: nil)
+        let vc = AppDetailViewController(today: todayList[indexPath.row])
+        present(vc, animated: true, completion: nil)
+    }
+}
+
+private extension TodayViewController {
+    func fetchData() {
+        guard let url = Bundle.main.url(forResource: "Today", withExtension: "plist") else { return }
+        do {
+            let data = try Data(contentsOf: url)
+            let result = try PropertyListDecoder().decode([Today].self, from: data)
+            todayList = result
+        } catch {
+            
+        }
     }
 }

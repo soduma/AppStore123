@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class RankingFeatureSectionView: UIView {
-//    private lazy var cellHeight: CGFloat = 70
+    private lazy var rankingList: [RankingFeature] = []
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -23,7 +23,6 @@ final class RankingFeatureSectionView: UIView {
         button.setTitle("모두 보기", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
-        
         return button
     }()
     
@@ -51,6 +50,8 @@ final class RankingFeatureSectionView: UIView {
         super.init(frame: frame)
         
         setUpViews()
+        fetchData()
+        collectionView.reloadData()
         
     }
     
@@ -62,13 +63,13 @@ final class RankingFeatureSectionView: UIView {
 extension RankingFeatureSectionView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RankingFeatureSectionViewCell", for: indexPath) as? RankingFeatureSectionViewCell else { return UICollectionViewCell() }
-        cell.setUp()
+        cell.setUp(ranking: rankingList[indexPath.row])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        9
+        rankingList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -89,7 +90,7 @@ extension RankingFeatureSectionView {
         
         showAllAppsButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalTo(titleLabel.snp.bottom)
+            $0.centerY.equalTo(titleLabel.snp.centerY)
         }
         
         collectionView.snp.makeConstraints {
@@ -101,6 +102,19 @@ extension RankingFeatureSectionView {
         separatorView.snp.makeConstraints {
             $0.top.equalTo(collectionView.snp.bottom).offset(16)
             $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+}
+
+private extension RankingFeatureSectionView {
+    func fetchData() {
+        guard let url = Bundle.main.url(forResource: "RankingFeature", withExtension: "plist") else { return }
+        do {
+            let data = try Data(contentsOf: url)
+            let result = try PropertyListDecoder().decode([RankingFeature].self, from: data)
+            rankingList = result
+        } catch {
+            
         }
     }
 }
