@@ -13,7 +13,9 @@ final class TodayCollectionHeaderView: UICollectionReusableView {
         let label = UILabel()
 //        label.text = "11월 23일 화요일"
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM월 dd일 E요일"
+        let locale = Locale(identifier: "ko")
+        formatter.dateFormat = "MM월 dd일 EEEE"
+        formatter.locale = locale
         let todayDate = formatter.string(from: Date())
         label.text = todayDate
         label.font = .systemFont(ofSize: 14, weight: .semibold)

@@ -73,6 +73,10 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout {
         let vc = AppDetailViewController(today: todayList[indexPath.row])
         present(vc, animated: true, completion: nil)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
 }
 
 private extension TodayViewController {
