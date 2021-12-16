@@ -11,7 +11,11 @@ import SnapKit
 final class TodayCollectionHeaderView: UICollectionReusableView {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "11월 23일 화요일"
+//        label.text = "11월 23일 화요일"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM월 dd일 E요일"
+        let todayDate = formatter.string(from: Date())
+        label.text = todayDate
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .secondaryLabel
         return label

@@ -16,8 +16,16 @@ final class ExchangeCodeSectionView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
         button.backgroundColor = .tertiarySystemGroupedBackground
         button.layer.cornerRadius = 7
+        button.addTarget(self, action: #selector(tapExchangeCodeButton), for: .touchUpInside)
         return button
     }()
+    
+    @objc func tapExchangeCodeButton() {
+        let alertAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+        let alert = UIAlertController(title: "코드 교환", message: "happy!", preferredStyle: .actionSheet)
+        alert.addAction(alertAction)
+        window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

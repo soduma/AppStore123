@@ -49,11 +49,11 @@ final class AppDetailViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         button.tintColor = .systemBlue
-        button.addTarget(self, action: #selector(tabShareButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapShareButton), for: .touchUpInside)
         return button
     }()
     
-    @objc func tabShareButton() {
+    @objc func tapShareButton() {
         let activityItems: [Any] = [today.title]
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)

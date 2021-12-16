@@ -62,7 +62,7 @@ private extension FeatureSectionViewCell {
         
         appNameLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(typeLabel.snp.bottom)
+            $0.top.equalTo(typeLabel.snp.bottom).offset(4)
         }
         
         descriptionLabel.snp.makeConstraints {
