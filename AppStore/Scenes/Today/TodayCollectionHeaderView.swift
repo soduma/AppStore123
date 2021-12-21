@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftUI
 
 final class TodayCollectionHeaderView: UICollectionReusableView {
     private lazy var dateLabel: UILabel = {
@@ -31,8 +32,18 @@ final class TodayCollectionHeaderView: UICollectionReusableView {
         return label
     }()
     
+    private lazy var profileButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("🥺", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.backgroundColor = .systemGray5
+        button.layer.cornerRadius = 23
+        button.clipsToBounds = true
+        return button
+    }()
+    
     func setUpView() {
-        [dateLabel, titleLabel]
+        [dateLabel, titleLabel, profileButton]
             .forEach { addSubview($0) }
         
         dateLabel.snp.makeConstraints {
@@ -44,6 +55,13 @@ final class TodayCollectionHeaderView: UICollectionReusableView {
         titleLabel.snp.makeConstraints {
             $0.left.equalTo(dateLabel)
             $0.top.equalTo(dateLabel.snp.bottom).offset(8)
+        }
+        
+        profileButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(16)
+            $0.top.equalTo(titleLabel.snp.top)
+            $0.bottom.equalTo(titleLabel.snp.bottom)
+            $0.width.equalTo(profileButton.snp.height)
         }
     }
 }
