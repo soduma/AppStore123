@@ -57,6 +57,7 @@ final class RankingFeatureSectionViewCell: UICollectionViewCell {
     func setUp(ranking: RankingFeature) {
         setUpLayout()
         imageView.image = UIImage(systemName: "applelogo")
+        imageView.tintColor = .label
         titleLabel.text = ranking.title
         descriptionLabel.text = ranking.description
         inAppPurchaseInfoLabel.isHidden = !ranking.isInPurchaseApp
